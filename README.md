@@ -11,6 +11,12 @@ Claude Code に作業を頼んでいる間の状態を、USB でつないだラ�
 
 ボタンを長押しすると明るさが 1 段暗くなる（100% → 60% → 35% → 20% → 10% → 100%）。明るさは覚えている。
 
+## 動作環境
+
+- **Linux**: Ubuntu 22.04 で確認
+- **Windows**: Windows 11 で確認。Git for Windows が必要
+- **Mac**: 未確認
+
 ## 使い方
 
 ランプを USB で PC に挿して、Claude Code で:
@@ -20,18 +26,18 @@ Claude Code に作業を頼んでいる間の状態を、USB でつないだラ�
 /plugin install ai-lamp@robohase
 ```
 
-入れたら Claude Code を起動し直す。
+入れたら Claude Code を起動し直す。Linux は先に下の「Linux の設定」をしておく。
 
-Linux（Ubuntu など）は最初に 1 回だけ、USB シリアルに書き込めるようにする:
+Claude Code を同時にいくつも動かしているときは、どれかが許可待ちなら黄色、どれかが作業中なら青、全部終わったら緑になる。
+
+## Linux の設定
+
+最初に 1 回だけ、USB シリアルに書き込めるようにする:
 
 ```bash
 echo 'SUBSYSTEM=="tty", ATTRS{idVendor}=="1209", ATTRS{idProduct}=="c550", MODE="0666"' | sudo tee /etc/udev/rules.d/99-ai-lamp.rules
 sudo udevadm control --reload && sudo udevadm trigger
 ```
-
-Mac はそのまま使える（未確認）。Windows は Git for Windows（Claude Code でもすすめられているもの）が入っていれば使える（未確認）。
-
-Claude Code を同時にいくつも動かしているときは、どれかが許可待ちなら黄色、どれかが作業中なら青、全部終わったら緑になる。
 
 ## ほかのツールから光らせる
 
@@ -41,7 +47,7 @@ Claude Code を同時にいくつも動かしているときは、どれかが�
 echo work > /dev/serial/by-id/usb-Deqing_CH55xduino_*
 ```
 
-## 光り方を変える
+## ファームウェアを変更する
 
 `firmware/ai_lamp/ai_lamp.ino` がファームウェアのソース（[ch55xduino](https://github.com/DeqingSun/ch55xduino)）。
 
