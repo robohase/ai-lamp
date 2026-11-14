@@ -1,0 +1,14 @@
+{
+  "name": "robohase",
+  "description": "robohase の Claude Code プラグイン",
+  "owner": {
+    "name": "robohase"
+  },
+  "plugins": [
+    {
+      "name": "ai-lamp",
+      "description": "Claude Code の作業状態を USB の AI 作業ランプに光で出す（作業中は青、完了は緑、許可待ちは黄色）",
+      "source": "./plugin"
+    }
+  ]
+}

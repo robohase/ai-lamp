@@ -1,0 +1,7 @@
+{
+  "name": "ai-lamp",
+  "version": "0.1.0",
+  "description": "Claude Code の作業状態を USB の AI 作業ランプに光で出す（作業中は青、完了は緑、許可待ちは黄色）",
+  "author": { "name": "robohase" },
+  "license": "MIT"
+}
