@@ -1,9 +1,20 @@
+<div align="center">
+
 # AI 作業ランプ
 
-Claude Code に作業を頼んでいる間の状態を，USB でつないだランプの光で知らせる．
+<img src="docs/images/IMG_0131.gif" alt="AI 作業ランプのデモ" width="300">
 
-Claude Code のプラグインと，ランプのファームウェア（Arduino）．
+**Claude Code の作業状態を、USB ランプの光で知らせる**
 
+[English](README.en.md) ｜ 日本語
+
+</div>
+
+Claude Code に作業を頼んでいる間の状態を，USB でつないだランプの光で知らせる便利グッツ
+
+Claude Code のプラグインと，ランプのファームウェア（Arduino）をこのリポジトリで管理してます．
+
+## 表示状態
 | 状態 | 光り方 | いつ |
 |---|---|---|
 | 作業中 | 🔵 青い光がくるくる回る | 指示を送ったとき・ツールを使うたび |
@@ -23,7 +34,7 @@ Claude Code のプラグインと，ランプのファームウェア（Arduino�
 
 ## 使い方
 
-ランプを USB で PC に挿して，Claude Code で次の 2 つを打つ．
+ランプを USB で PC に挿して，Claude Code で次の2つのコマンドを実行する．
 
 ```
 /plugin marketplace add robohase/ai-lamp
@@ -53,8 +64,6 @@ sudo udevadm control --reload && sudo udevadm trigger
 
 ランプに USB シリアルで `work` / `done` / `wait` / `off` を 1 行送ると，その状態になる（返事はしない）．
 
-`?` を送ると，今の状態と明るさが返ってくる（例: `work 60%`）．
-
 Linux:
 
 ```bash
@@ -67,7 +76,7 @@ Windows（PowerShell）: `COM6` はランプの番号に変える（デバイス
 $p = New-Object System.IO.Ports.SerialPort COM6; $p.Open(); $p.WriteLine("work"); $p.Close()
 ```
 
-## ファームウェアを変更する
+## ファームウェアの変更
 
 `firmware/ai_lamp/ai_lamp.ino` がファームウェアのソース（[ch55xduino](https://github.com/DeqingSun/ch55xduino)）．
 
