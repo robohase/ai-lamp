@@ -34,16 +34,27 @@ Claude Code のプラグインと，ランプのファームウェア（Arduino�
 
 ## 使い方
 
-ランプを USB で PC に挿して，Claude Code で次の2つのコマンドを実行する．
+ランプを USB で PC に挿して，プラグインを入れる．
+
+Linux は先に下の「Linux の設定」をしておく．
+
+### デスクトップアプリ（Claude の Code タブ）の場合
+
+1. 入力欄の横の **+** を押して，**Plugins** を選ぶ
+2. **Add marketplace** を選んで，`robohase/ai-lamp` と入力する
+3. **Add plugin** で **ai-lamp** を入れる
+4. 新しいセッションを始める
+
+### ターミナルの Claude Code の場合
+
+次の2つのコマンドを実行して，Claude Code を起動し直す．
 
 ```
 /plugin marketplace add robohase/ai-lamp
 /plugin install ai-lamp@robohase
 ```
 
-入れたら Claude Code を起動し直す．
-
-Linux は先に下の「Linux の設定」をしておく．
+### 複数のセッションを動かしているとき
 
 Claude Code を同時にいくつも動かしているときは，次の順で光る．
 

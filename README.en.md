@@ -35,16 +35,27 @@ The lamp remembers the brightness setting.
 
 ## Usage
 
-Plug the lamp into your PC via USB, then run the following two commands in Claude Code:
+Plug the lamp into your PC via USB, then install the plugin.
+
+On Linux, first do the "Linux setup" section below.
+
+### In the desktop app (the Code tab of Claude)
+
+1. Click **+** next to the prompt box and choose **Plugins**
+2. Choose **Add marketplace** and enter `robohase/ai-lamp`
+3. Use **Add plugin** to install **ai-lamp**
+4. Start a new session
+
+### In Claude Code in a terminal
+
+Run the following two commands, then restart Claude Code:
 
 ```
 /plugin marketplace add robohase/ai-lamp
 /plugin install ai-lamp@robohase
 ```
 
-After installing, restart Claude Code.
-
-On Linux, first do the "Linux setup" section below.
+### When running several sessions
 
 When you run several Claude Code sessions at once, the lamp shows the following, in this order:
 
