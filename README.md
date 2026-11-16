@@ -38,6 +38,8 @@ Claude Code のプラグインと，内部基板のファームウェア（Ardui
 
 Linux は先に下の「Linux の設定」をしておく．
 
+Windows は先に [Git for Windows](https://git-scm.com/downloads/win) を入れておく（プラグインの取得に使う）．
+
 ### デスクトップアプリ（Claude の Code タブ）の場合
 
 1. 左側の**カスタマイズ**を選ぶ
@@ -66,7 +68,7 @@ Claude Code を同時にいくつも動かしているときは，次の順で�
 - どれかが作業中 → 🔵 青
 - 全部終わった → 🟢 緑
 
-## Linux の設定
+### Linux の設定
 
 最初に 1 回だけ，USB シリアルに書き込めるようにする．
 
@@ -77,7 +79,7 @@ sudo udevadm control --reload && sudo udevadm trigger
 
 ## ほかのツールから光らせる
 
-ランプに USB シリアルで `work` / `done` / `wait` / `off` を 1 行送ると，その状態になる（返事はしない）．
+ランプに USB シリアルで `work` / `done` / `wait` / `off` を 1 行送ると，その状態になる．
 
 Linux:
 

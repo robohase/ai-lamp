@@ -39,6 +39,8 @@ Plug the lamp into your PC via USB, then install the plugin.
 
 On Linux, first do the "Linux setup" section below.
 
+On Windows, first install [Git for Windows](https://git-scm.com/downloads/win) (it is used to fetch the plugin).
+
 ### In the desktop app (the Code tab of Claude)
 
 1. Choose **Customize** on the left
@@ -67,7 +69,7 @@ When you run several Claude Code sessions at once, the lamp shows the following,
 - If any session is working → 🔵 Blue
 - If all sessions are done → 🟢 Green
 
-## Linux setup
+### Linux setup
 
 Do this once so that you can write to the USB serial device.
 
@@ -78,7 +80,7 @@ sudo udevadm control --reload && sudo udevadm trigger
 
 ## Controlling the lamp from other tools
 
-Send one line over USB serial with `work` / `done` / `wait` / `off` to switch the lamp to that state (it does not reply).
+Send one line over USB serial with `work` / `done` / `wait` / `off` to switch the lamp to that state.
 
 Linux:
 
