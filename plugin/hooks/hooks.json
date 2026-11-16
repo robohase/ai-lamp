@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "sh \"${CLAUDE_PLUGIN_ROOT}/hooks/lamp.sh\" work",
+            "command": "echo \\' >/dev/null; sh \"${CLAUDE_PLUGIN_ROOT}/hooks/lamp.sh\" work #' | Out-Null; & ([scriptblock]::Create((Get-Content -Raw -Encoding UTF8 -LiteralPath \"${CLAUDE_PLUGIN_ROOT}/hooks/lamp.ps1\"))) work",
             "timeout": 5
           }
         ]
@@ -17,7 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "sh \"${CLAUDE_PLUGIN_ROOT}/hooks/lamp.sh\" work",
+            "command": "echo \\' >/dev/null; sh \"${CLAUDE_PLUGIN_ROOT}/hooks/lamp.sh\" work #' | Out-Null; & ([scriptblock]::Create((Get-Content -Raw -Encoding UTF8 -LiteralPath \"${CLAUDE_PLUGIN_ROOT}/hooks/lamp.ps1\"))) work",
             "timeout": 5
           }
         ]
@@ -28,7 +28,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "sh \"${CLAUDE_PLUGIN_ROOT}/hooks/lamp.sh\" wait",
+            "command": "echo \\' >/dev/null; sh \"${CLAUDE_PLUGIN_ROOT}/hooks/lamp.sh\" wait #' | Out-Null; & ([scriptblock]::Create((Get-Content -Raw -Encoding UTF8 -LiteralPath \"${CLAUDE_PLUGIN_ROOT}/hooks/lamp.ps1\"))) wait",
             "timeout": 5
           }
         ]
@@ -39,7 +39,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "sh \"${CLAUDE_PLUGIN_ROOT}/hooks/lamp.sh\" done",
+            "command": "echo \\' >/dev/null; sh \"${CLAUDE_PLUGIN_ROOT}/hooks/lamp.sh\" done #' | Out-Null; & ([scriptblock]::Create((Get-Content -Raw -Encoding UTF8 -LiteralPath \"${CLAUDE_PLUGIN_ROOT}/hooks/lamp.ps1\"))) done",
             "timeout": 5
           }
         ]
@@ -50,7 +50,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "sh \"${CLAUDE_PLUGIN_ROOT}/hooks/lamp.sh\" off",
+            "command": "echo \\' >/dev/null; sh \"${CLAUDE_PLUGIN_ROOT}/hooks/lamp.sh\" off #' | Out-Null; & ([scriptblock]::Create((Get-Content -Raw -Encoding UTF8 -LiteralPath \"${CLAUDE_PLUGIN_ROOT}/hooks/lamp.ps1\"))) off",
             "timeout": 5
           }
         ]
