@@ -4,7 +4,7 @@
 
 <img src="docs/images/IMG_0131.gif" alt="AI Work Lamp demo" width="300">
 
-**Shows the state of Claude Code with a USB lamp**
+**A handy gadget that shows the state of Claude Code with a USB lamp**
 
 [日本語](README.md) ｜ English
 
@@ -12,7 +12,7 @@
 
 A handy gadget that shows the state of Claude Code while it is working on your request, using the light of a lamp connected by USB.
 
-The Claude Code plugin and the lamp's firmware (Arduino) are managed in this repository.
+The Claude Code plugin and the firmware (Arduino) for the board inside the lamp are managed in this repository.
 
 ## Display states
 
@@ -25,12 +25,12 @@ The Claude Code plugin and the lamp's firmware (Arduino) are managed in this rep
 
 Holding the button down dims the brightness by one step (100% → 60% → 35% → 20% → 10% → 100%).
 
-The lamp remembers the brightness setting.
+The brightness setting is kept when the lamp loses power.
 
 ## Supported environments
 
-- **Linux**: Confirmed on Ubuntu 22.04
-- **Windows**: Confirmed on Windows 11
+- **Linux**: Confirmed to work on Ubuntu 22.04
+- **Windows**: Confirmed to work on Windows 11
 - **Mac**: Not confirmed
 
 ## Usage
@@ -41,10 +41,14 @@ On Linux, first do the "Linux setup" section below.
 
 ### In the desktop app (the Code tab of Claude)
 
-1. Click **+** next to the prompt box and choose **Plugins**
-2. Choose **Add marketplace** and enter `robohase/ai-lamp`
-3. Use **Add plugin** to install **ai-lamp**
-4. Start a new session
+1. Choose **Customize** on the left
+2. Choose **Plugins**, then choose **Add marketplace**
+3. Click **Add from a repository**, paste the URL below, and click **Sync**
+```bash
+https://github.com/robohase/ai-lamp
+```
+4. For `Ai lamp`, choose `Add to this computer` (when it shows **Added**, the installation is complete)
+5. Start a new session
 
 ### In Claude Code in a terminal
 
