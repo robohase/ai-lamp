@@ -3,6 +3,7 @@
 // PC から USB シリアルで状態を 1 行送ると、その光り方になる（Claude Code のフックから送る。設定は README）
 //   work: 青い光が外側をくるくる回る / done: 緑で点きっぱなし / wait: 黄色で点滅 / off: 消す
 //   ?   : 今の状態と明るさを返す（例: work 60%）。状態のコマンドには返事をしない（echo で送ったとき返事がループしないように）
+// USB を挿すと、緑がふわっと点いて消える（起動したお知らせ）。途中で状態が来たらすぐそっちに変わる
 //
 // ボタン: 短く押すと消す。長押し（0.6 秒）で明るさを 1 段暗く（100 → 60 → 35 → 20 → 10 → 100%）、フラッシュに保存
 // 書き込み: Arduino IDE の「書き込み」でそのまま書ける。書けなくなったら、ボタンを押しながら USB を挿す
@@ -21,6 +22,9 @@ __code uint8_t colors[4][3] = {
 #define SPIN_MS 1200   // 作業中の光が 1 周する時間（ミリ秒）
 #define TAIL 4         // 作業中の光の尾の長さ（LED の個数）
 #define DIM 40         // 作業中の中心と内側の明るさ（0〜255）
+__code uint8_t bootColor[3] = {0, 255, 40};      // 起動したときの色（done と同じ緑）
+#define BOOT_IN_MS 800   // 起動したときに明るくなる時間（ミリ秒）
+#define BOOT_OUT_MS 1000 // そのあと消えるまでの時間（ミリ秒）
 __code uint8_t levels[5] = {255, 153, 89, 51, 26};   // 長押しで切り替える明るさ
 __code uint8_t levelPct[5] = {100, 60, 35, 20, 10};
 // ------------------------------------
@@ -46,6 +50,7 @@ __xdata uint8_t ledData[NUM_BYTES];
 __xdata uint8_t shownData[NUM_BYTES];   // 最後に LED へ送った中身
 __xdata uint8_t state = OFF;
 __xdata uint8_t level = 1;              // 60%（机の上で目に入るので少し控えめ）
+__xdata uint8_t booting = 1;            // 起動のお知らせ中
 __xdata uint8_t btnStable = 1, btnLast = 1, longDone = 0;
 __xdata uint32_t btnChangedAt = 0, pressedAt = 0, lastFrame = 0;
 __xdata char cmd[16];
@@ -61,11 +66,28 @@ void setLed(uint8_t i, uint8_t s) {
   set_pixel_for_GRB_LED(ledData, i, scale8(colors[state][0], s), scale8(colors[state][1], s), scale8(colors[state][2], s));
 }
 
+// 起動のお知らせ: 0 → 明るく → 0。ふわっと見えるように 2 乗のカーブにする
+void renderBoot(uint32_t now) {
+  uint8_t i;
+  uint16_t s;
+  if (now < BOOT_IN_MS) s = (uint32_t)now * 255 / BOOT_IN_MS;
+  else if (now < BOOT_IN_MS + BOOT_OUT_MS) s = (uint32_t)(BOOT_IN_MS + BOOT_OUT_MS - now) * 255 / BOOT_OUT_MS;
+  else {
+    booting = 0;
+    s = 0;
+  }
+  s = scale8(scale8(s, s), levels[level]);
+  for (i = 0; i < NUM_LEDS; i++)
+    set_pixel_for_GRB_LED(ledData, i, scale8(bootColor[0], s), scale8(bootColor[1], s), scale8(bootColor[2], s));
+}
+
 void render(uint32_t now) {
   uint8_t i, s = 255;
   uint16_t pos, d;
   memset(ledData, 0, NUM_BYTES);
-  if (state == WORK) {
+  if (booting) {
+    renderBoot(now);
+  } else if (state == WORK) {
     for (i = 0; i < 7; i++) setLed(i, DIM);
     pos = (uint32_t)(now % SPIN_MS) * (12 * 256) / SPIN_MS;   // 先頭の位置（256 = LED 1 個）
     for (i = 0; i < 12; i++) {
@@ -106,6 +128,7 @@ void pollButton(uint32_t now) {
       longDone = 0;
     } else if (!longDone) {
       state = OFF;                                       // 短く押したら、離したときに消す
+      booting = 0;
     }
   }
   if (btnStable == 0 && !longDone && now - pressedAt >= LONG_PRESS_MS) {
@@ -120,7 +143,10 @@ void handleCommand(void) {
   uint8_t i;
   cmd[cmdLen] = 0;
   for (i = 0; i < 4; i++) {
-    if (strcmp(cmd, names[i]) == 0) state = i;
+    if (strcmp(cmd, names[i]) == 0) {
+      state = i;
+      booting = 0;                                       // 起動のお知らせ中でも、すぐ切り替える
+    }
   }
   if (cmd[0] == '?') {
     USBSerial_print_s(names[state]);

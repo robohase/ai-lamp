@@ -23,6 +23,8 @@ The Claude Code plugin and the firmware (Arduino) for the board inside the lamp 
 | Waiting for permission | 🟡 Yellow, blinking | When it has stopped and is asking for permission |
 | Off | ⚫ Off | When you exit Claude Code, or when you briefly press the lamp's button |
 
+When you plug in the USB cable, the lamp softly glows green and fades out to show that it has started.
+
 Holding the button down dims the brightness by one step (100% → 60% → 35% → 20% → 10% → 100%).
 
 The brightness setting is kept when the lamp loses power.
