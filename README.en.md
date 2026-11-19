@@ -33,7 +33,7 @@ The brightness setting is kept when the lamp loses power.
 
 - **Linux**: Confirmed to work on Ubuntu 22.04
 - **Windows**: Confirmed to work on Windows 11
-- **Mac**: Not confirmed
+- **Mac**: Confirmed to work on macOS
 
 ## Usage
 
@@ -52,7 +52,7 @@ On Windows, first install [Git for Windows](https://git-scm.com/downloads/win) (
 https://github.com/robohase/ai-lamp
 ```
 4. For `Ai lamp`, choose `Add to this computer` (when it shows **Added**, the installation is complete)
-5. Start a new session
+5. Restart the app
 
 ### In Claude Code in a terminal
 

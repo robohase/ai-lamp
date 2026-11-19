@@ -32,7 +32,7 @@ USB を挿すと，緑がふわっと点いて消える（起動したお知ら�
 
 - **Linux**: Ubuntu 22.04 で動作確認
 - **Windows**: Windows 11 で動作確認
-- **Mac**: 未確認
+- **Mac**: macOS で動作確認
 
 ## 使い方
 
@@ -51,7 +51,7 @@ Windows は先に [Git for Windows](https://git-scm.com/downloads/win) を入れ
 https://github.com/robohase/ai-lamp
 ```
 4. `Ai lamp`を`このコンピューターに追加`を選択する．（追加済みになればインストール完了です）
-5. 新しいセッションを始める
+5. アプリを再起動する
 
 ### ターミナルの Claude Code の場合
 
